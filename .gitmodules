@@ -10,9 +10,6 @@
 [submodule "external/glew-cmake"]
 	path = external/glew-cmake
 	url = https://github.com/Perlmint/glew-cmake.git
-[submodule "external/CImg"]
-	path = external/CImg
-	url = http://git.code.sf.net/p/cimg/source
 [submodule "external/SOIL"]
 	path = external/SOIL
 	url = https://github.com/DeVaukz/SOIL.git

@@ -2,7 +2,6 @@
 #include <string>
 
 // GLEW
-#define GLEW_STATIC
 #include <GL/glew.h>
 
 // GLFW
@@ -41,12 +40,13 @@ GLfloat lastFrame = 0.0f;
 // The MAIN function, from here we start our application and run our Game loop
 int main()
 {
-    // Init GLFW
+    // Init GLFWi
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_SAMPLES, 4);
 
     GLFWwindow* window = glfwCreateWindow(screenWidth, screenHeight, "LearnOpenGL", nullptr, nullptr); // Windowed
