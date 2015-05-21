@@ -38,7 +38,7 @@ add_subdirectory(external/SOIL)
 include_directories(SYSTEM external/SOIL/src)
 
 if(WIN32)
-  set(LIBS glfw3 opengl32 glew32s SOIL assimp)
+	set(LIBS glfw opengl32 libglew_static SOIL_Static assimp)
 elseif(UNIX)
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
   # Linux packages native to CMake
@@ -47,6 +47,8 @@ elseif(UNIX)
   add_definitions(${OPENGL_DEFINITIONS})
   find_package(X11 REQUIRED)
   list(APPEND LIBS ${X11_Xrandr_LIB} ${X11_Xxf86vm_LIB} ${X11_Xi_LIB})
+  find_package(Threads REQUIRED)
+  list(APPEND LIBS ${CMAKE_THREAD_LIBS_INIT})
   #find_library(RT_LIB rt)
   #list(APPEND LIBS ${RT_LIB})
   # append non-native packages
