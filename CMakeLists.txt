@@ -136,7 +136,7 @@ set(5.advanced_lighting
     2.gamma_correction
     3.1.shadow_mapping
     3.2.point_shadows
-    # 3.3.csm
+    3.3.csm
     4.normal_mapping
     5.parallax_mapping
     6.hdr
@@ -154,7 +154,7 @@ set(6.pbr
 )
 
 set(7.in_practice
-    1.debugging
+    # 1.debugging
     # 2.text_rendering
 )
 

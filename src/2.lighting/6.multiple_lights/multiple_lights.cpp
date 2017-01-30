@@ -48,9 +48,10 @@ int main()
     // Init GLFW
     glfwInit();
     // Set all the required options for GLFW
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
@@ -71,7 +72,9 @@ int main()
     glewInit();
 
     // Define the viewport dimensions
-    glViewport(0, 0, WIDTH, HEIGHT);
+    int width, height;
+    glfwGetFramebufferSize(window, &width, &height);
+    glViewport(0, 0, width, height);
 
     // OpenGL options
     glEnable(GL_DEPTH_TEST);
@@ -180,7 +183,7 @@ int main()
     glGenTextures(1, &diffuseMap);
     glGenTextures(1, &specularMap);
     glGenTextures(1, &emissionMap);
-    int width, height;
+
     unsigned char* image;
     // Diffuse map
     image = SOIL_load_image(FileSystem::getPath("resources/textures/container2.png").c_str(), &width, &height, 0, SOIL_LOAD_RGB);
