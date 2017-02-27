@@ -16,7 +16,6 @@ uniform vec3 lightPositions[4];
 uniform vec3 lightColors[4];
 
 uniform vec3 camPos;
-uniform float exposure;
 
 const float PI = 3.14159265359;
 // ----------------------------------------------------------------------------
@@ -60,10 +59,16 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0)
     return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
 }
 // ----------------------------------------------------------------------------
+vec3 fresnelSchlickRoughness(float cosTheta, vec3 F0, float roughness)
+{
+    return F0 + (max(vec3(1.0 - roughness), F0) - F0) * pow(1.0 - cosTheta, 5.0);
+}  
+// ----------------------------------------------------------------------------
 void main()
 {		
-    vec3 N = normalize(Normal);
+    vec3 N = Normal;
     vec3 V = normalize(camPos - WorldPos);
+    vec3 R = reflect(-V, N); 
 
     // calculate reflectance at normal incidence; if dia-electric (like plastic) use F0 
     // of 0.04 and if it's a metal, use their albedo color as F0 (metallic workflow)    
@@ -108,10 +113,8 @@ void main()
         Lo += (kD * albedo / PI + brdf) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
     }   
     
-    // ambient lighting (note that the next IBL tutorial will replace 
-    // this ambient lighting with environment lighting).
     vec3 ambient = vec3(0.03) * albedo * ao;
-
+    
     vec3 color = ambient + Lo;
 
     // HDR tonemapping
