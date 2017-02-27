@@ -148,8 +148,8 @@ set(5.advanced_lighting
 set(6.pbr
     1.1.lighting
     1.2.lighting_textured
-    # 2.1.1.ibl_irradiance_conversion
-    # 2.1.2.ibl_irradiance
+    2.1.1.ibl_irradiance_conversion
+    2.1.2.ibl_irradiance
     # 2.2.ibl_specular
 )
 
@@ -157,8 +157,6 @@ set(7.in_practice
     # 1.debugging
     # 2.text_rendering
 )
-
-
 
 configure_file(configuration/root_directory.h.in configuration/root_directory.h)
 include_directories(${CMAKE_BINARY_DIR}/configuration)
